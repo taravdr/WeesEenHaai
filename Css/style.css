@@ -1,0 +1,450 @@
+@font-face {
+    font-family: 'BBH Bartle';
+    src: url('../Fonts/BBHBartle-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display:swap;
+}
+
+@font-face {
+    font-family: 'sarina';
+    src: url('../Fonts/Sarina-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Momo Signature';
+    src: url('../Fonts/MomoSignature-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Special Elite';
+    src: url('../Fonts/SpecialElite-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'StaatLiches';
+    src: url('../Fonts/Staatliches-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+:root {
+    --zwart: #000;
+    --wit:   #fff;
+    --vak:   #f1f3f2;
+    --rood:  #a81818;
+    --kaaksnede: 60.75%;
+}
+
+* {box-sizing: border-box; margin: 0; padding: 0;  }
+
+html{ scroll-behavior: smooth;}
+
+body {
+    background-color: var(--wit);
+    background-image: url('../Beelden/VissenAchtergrond.PNG');
+    background-position: center top;
+    background-size: max(100%, 700px) auto;
+    background-repeat: repeat-y;
+    font-family: 'Special Elite', 'Courier New', monospace;
+    color: var(--zwart);
+    overflow-x: hidden;
+}
+
+section,header {scroll-margin-top: 3rem; }
+
+/*-------menu sectie--------*/
+nav {
+    position: fixed;
+    top: 10px;
+    right: 14px;
+    z-index: 50;
+    display: flex;
+    gap: 6px;
+
+}
+
+nav a {
+    font-family: 'Momo Signature' , cursive;
+    font-size: .95rem;
+    color: var(--zwart);
+    text-decoration: none;
+    background: var(--wit);
+    border-radius: 8px;
+    padding: 1px 12px;
+    transition: transform .15s, background .15s, color .15s;
+}
+
+
+ nav a:hover {
+    background: var(--zwart);
+    color: var(--wit);
+    transform: rotate(-3deg);
+ }
+
+
+ /*-------------homepage------------*/
+ header {
+    min-height: 100svh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+ }
+
+ h1 {
+    display: grid;
+    justify-items: center;
+    line-height: 1;
+ }
+
+ h1 span:nth-child(1),
+ h1 span:nth-child(2) {
+    font-family: 'BBH Bartle', sans-serif;
+    font-size: clamp(1.2rem, 4.5vw, 3.4rem);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    -webkit-text-stroke: 3px var(--zwart);
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 var(--zwart);
+ }
+
+ h1 span:nth-child(1) {color: var(--wit); }
+ h1 span:nth-child(2) {color:#9a9a9a; margin-bottom: .2rem; }
+
+ h1 span:nth-child(3) {
+    font-family: 'Sarina', cursive;
+    font-size: clamp(2.6rem, 11vw, 8rem);
+    font-style: italic;
+    color: var(--wit);
+    -webkit-text-stroke: 4px var(--zwart);
+    paint-order: stroke fill;
+    text-shadow: 5px 5px 0 var(--zwart);
+ }
+
+ h1 em{ font-style: italic; color:  var(--rood); }
+
+
+ /*--------main inhoud (alles wat onder elkaar zit)---------*/
+ 
+ main {
+    display:grid;
+    gap: 1.5rem;
+    padding: 1rem;
+ }
+
+ /* De haai zijn lagen, hij heeft 3 lagen die op elkaar bewegen. de vis beweegt niet*/
+ figure {
+    position:relative;
+    width: min(100%, 30rem);
+    margin-inline: auto;
+    aspect-ratio: 1000 / 1200;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+figure img {
+    position: absolute;
+    left: 0;
+    top: -66.667%;
+    width: 100%;
+    height: auto;
+    user-select: none;
+
+}
+
+figure img:nth-of-type(1) {
+    clip-path: inset (var(--kaaksnede) 0 0 0);
+    transform-origin: 50% var(--kaaksnede);
+    animation: knabbel-boven 1.5s cubic-bezier(.45, 0, .55, 1) infinite;
+}
+
+figure img:nth-of-type(2) {
+    clip-path: inset(var(--kaaksnede) 0 0 0);
+    transform-origin: 50% var(--kaaksnede);
+    animation: knabbel-onder 1.5s cubic-bezier(.45, 0, .55, 1) infinite;
+}
+
+figure img:nth-of-type(3) { z-index: 2; }
+
+/* De animatie van de kaak heb ik met keyframes gedaan(zoals je kan zien)) die draaien en verschuiven */
+@keyframes knabbel-boven {
+    0%, 100% {transform: translateY(0) rotate(0deg); }
+    50% {transform: translateY(0.7%) rotate(0.2deg);}
+}
+
+@keyframes knabbel-onder {
+    0%, 100% {transform: translateY(0) rotate(0deg); }
+    50% {transform: translateY(-0.4%) rotate(-0.25deg)}
+}
+
+/*------------informatie pagina----------------*/
+#informatie {
+    display: grid;
+    gap: 1.5rem;
+}
+
+article,
+aside {
+    background: var(--vak);
+    border: 3px solid var(--zwart);
+    border-radius: 6px;
+    padding: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+article p + p {margin-top: .8rem; }
+
+a { color: var(--zwart); }
+a:hover { color: var(--rood); }
+
+#informatie > p {
+    justify-self: start;
+    background: var(--wit);
+    padding: .3rem .6rem;
+    font-weight: bold;
+    font-size: .8rem;
+    line-height: 1.3;
+}
+
+/*----------bronnen pagina--------------*/
+#bronnen {
+    display: grid;
+    gap: 1.5rem;
+    justify-items: start;
+}
+#bronnen > * {max-width: 100%; }
+
+h2 {
+    font-family: 'BBH Bartle', sans-serif;
+    font-size: clamp(1.2rem, 5vw, 2.6rem);
+    text-transform: uppercase;
+    color: var(--wit);
+    -webkit-text-stroke: 2px var(--zwart);
+    paint-order: stroke fill;
+    text-shadow: 3px 3px 0 #777;
+    line-height: 1.1;
+}
+
+aside { border-width: 5px;}
+
+aside ul {
+    display: grid;
+    gap: .6rem;
+    list-style: none;
+}
+
+aside:last-of-type h3 {
+    font-family: 'Staatliches', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.2rem, 5vw, 2.6rem);
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+}
+
+/*---------------het begin van de footer-----------------*/
+
+footer {
+    display: grid;
+    background: var(--zwart);
+    color: var(--wit);
+    padding: .8rem 1rem 1rem;
+}
+
+
+footer small,
+footer strong {
+    font-family: 'Staatliches', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+/* dit is het stuk waar ik de breedte aanpas van het scherm*/
+@media (min-width: 1200px) {
+    html {scroll-snap-type: y proximity; }
+    body {position: relative; }
+
+    nav a:hover {transform: rotate(-3deg); }
+}
+    header {
+        height: 66.7vw;
+        min-height: 100vh;
+        padding:2rem;
+        scroll-snap-align: start;
+    }
+
+    h1 span:nth-child(1),
+    h1 span:nth-child(2) {font-size: clamp(1.2rem, 3.6vw, 3.4rem); }
+    h1 span:nth-child(3) {font-size: clamp(2.6rem, 8.5vw, 8rem);}
+
+    main {
+        display: block;
+        position: relative;
+        padding: 0;
+    }
+
+    /* ik hb het zo gedaan zodat de haai doorloopt van de informatie naar die bronnen pagina*/
+    figure {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        z-index: 5;
+    }
+
+    section,
+    #informatie,
+    #bronnen {
+        position: relative;
+        display: block;
+        height: 66.7vw;
+        min-height: 420px;
+        scroll-snap-align: start;
+    }
+
+    /* de tekstvakken voor info en bronnen*/
+ article {
+    position: absolute;
+    top: 3vw;
+    width: 34vw;
+    padding: 1.2vw 1.4vw;
+    font-size: clamp(.4rem, .79vw, 1.2rem);
+    line-height: 1.35;
+    text-align: justify;
+    hyphens: auto;
+    z-index: 1;
+ }
+
+ article p + p { margin-top: .7vw; }
+
+ article:first-of-type { left: 1vw; --hoogte: 35.4vw; }
+ article:last-of-type {right: 1vw; --hoogte: 33.2vw;  }
+
+
+ /* onzichtbare "border" om de haai heen, zodat de tekst om de haai heen loopt*/
+article::before {
+    content: '';
+    width: 21.6vw;
+    height: var(--hoogte);
+    pointer-events: none;
+}
+
+/* ik heb bij de border afmetingen hulp van AI gehad*/
+
+ article:first-of-type::before {
+    float: right;
+    shape-outside: polygon(21.6vw 0, 21.6vw 0.5vw, 21.6vw 1vw, 21.6vw 1.5vw, 21.6vw 2vw, 21.6vw 2.5vw, 21.6vw 3vw, 21.6vw 3.5vw, 21.6vw 4vw, 21.6vw 4.5vw, 21.6vw 5vw, 21.6vw 5.5vw, 21.6vw 6vw, 21.6vw 6.5vw, 21.6vw 7vw, 21.6vw 7.5vw, 21.6vw 8vw, 21.6vw 8.5vw, 21.6vw 9vw, 21.6vw 9.5vw, 21.6vw 10vw, 21.6vw 10.5vw, 21.6vw 11vw, 21.6vw 11.5vw, 21.6vw 12vw, 21.6vw 12.5vw, 21.6vw 13vw, 21.6vw 13.5vw, 21.6vw 14vw, 21.6vw 14.5vw, 21.4vw 15vw, 21vw 15.5vw, 20.6vw 16vw, 20.4vw 16.5vw, 20.3vw 17vw, 20.2vw 17.5vw, 20.1vw 18vw, 20.1vw 18.5vw, 20vw 19vw, 20vw 19.5vw, 20.1vw 20vw, 20.2vw 20.5vw, 20.1vw 21vw, 20.1vw 21.5vw, 20.1vw 22vw, 20vw 22.5vw, 19.9vw 23vw, 19.8vw 23.5vw, 19.6vw 24vw, 19.4vw 24.5vw, 19.2vw 25vw, 18.9vw 25.5vw, 18.7vw 26vw, 18.5vw 26.5vw, 18.3vw 27vw, 18.2vw 27.5vw, 18.1vw 28vw, 18vw 28.5vw, 17.9vw 29vw, 17.9vw 29.5vw, 17.9vw 30vw, 17.9vw 30.5vw, 18vw 31vw, 18vw 31.5vw, 18.1vw 32vw, 18.1vw 32.5vw, 18.1vw 33vw, 18.1vw 33.5vw, 18vw 34vw, 17.9vw 34.5vw, 17.8vw 35vw, 8.5vw 35.5vw, 5.9vw 36vw, 4.8vw 36.5vw, 3.9vw 37vw, 4vw 37.5vw, 4vw 38vw, 5.8vw 38.5vw, 12.2vw 39vw, 11.6vw 39.5vw, 10.9vw 40vw, 10.3vw 40.5vw, 9.9vw 41vw, 9.4vw 41.5vw, 9.1vw 42vw, 8.9vw 42.5vw, 8.7vw 43vw, 8.6vw 43.5vw, 8.9vw 44vw, 16.3vw 44.5vw, 16.2vw 45vw, 16.2vw 45.5vw, 16.2vw 46vw, 16.1vw 46.5vw, 15.9vw 47vw, 15.9vw 47.5vw, 15.8vw 48vw, 15.7vw 48.5vw, 15.6vw 49vw, 15.5vw 49.5vw, 15.4vw 50vw, 21.6vw 50vw, 21.6vw 0);
+  }
+
+  article:last-of-type::before {
+    float: left;
+    shape-outside: polygon(0 0, 0 0, 0 0.5vw, 0 1vw, 0 1.5vw, 0 2vw, 0 2.5vw, 0 3vw, 0 3.5vw, 0 4vw, 0 4.5vw, 0 5vw, 0 5.5vw, 0 6vw, 0 6.5vw, 0 7vw, 0 7.5vw, 0 8vw, 0 8.5vw, 0 9vw, 0 9.5vw, 0 10vw, 0 10.5vw, 0 11vw, 0 11.5vw, 0 12vw, 0 12.5vw, 0 13vw, 0 13.5vw, 0 14vw, 0 14.5vw, 0 15vw, 0 15.5vw, 0.1vw 16vw, 0.4vw 16.5vw, 0.7vw 17vw, 0.9vw 17.5vw, 1vw 18vw, 1.2vw 18.5vw, 1.3vw 19vw, 1.4vw 19.5vw, 1.4vw 20vw, 1.4vw 20.5vw, 1.4vw 21vw, 1.4vw 21.5vw, 1.4vw 22vw, 1.5vw 22.5vw, 1.7vw 23vw, 1.8vw 23.5vw, 2.1vw 24vw, 2.3vw 24.5vw, 2.5vw 25vw, 2.7vw 25.5vw, 2.9vw 26vw, 3vw 26.5vw, 3.2vw 27vw, 3.3vw 27.5vw, 3.4vw 28vw, 3.6vw 28.5vw, 3.6vw 29vw, 4vw 29.5vw, 5.2vw 30vw, 6.1vw 30.5vw, 7vw 31vw, 7.8vw 31.5vw, 8.4vw 32vw, 8.2vw 32.5vw, 7.7vw 33vw, 6.9vw 33.5vw, 6.8vw 34vw, 7.1vw 34.5vw, 6.8vw 35vw, 6.2vw 35.5vw, 5.1vw 36vw, 4.6vw 36.5vw, 4.9vw 37vw, 5.1vw 37.5vw, 5.5vw 38vw, 5.6vw 38.5vw, 5.8vw 39vw, 6.1vw 39.5vw, 6.2vw 40vw, 6.2vw 40.5vw, 6.2vw 41vw, 6.3vw 41.5vw, 6.3vw 42vw, 6.3vw 42.5vw, 6.4vw 43vw, 6.5vw 43.5vw, 6.5vw 44vw, 6.6vw 44.5vw, 6.6vw 45vw, 6.8vw 45.5vw, 6.9vw 46vw, 7.1vw 46.5vw, 7.2vw 47vw, 7.3vw 47.5vw, 7.5vw 48vw, 7.7vw 48.5vw, 7.8vw 49vw, 8vw 49.5vw, 8.1vw 50vw, 0 50vw);
+  }
+
+#informatie > p {
+    position: absolute;
+    left: 1.5vw;
+    bottom: 2vw;
+    z-index: 6;
+    max-width: 26vw;
+    padding: .3vw .6vw;
+    font-size: clamp(.5rem, .7vw, .75rem);
+    line-height: 1.3;
+
+}
+/* waar bronnen begint*/
+h2 {
+    position: absolute;
+    top: 3vw;
+    left: 2vw;
+    z-index: 6;
+    font-size:clamp(1rem, 2.4vw 2.6rem);
+}
+
+aside {
+    position: absolute;
+    left: 2vw;
+    z-index: 6;
+    padding: 1vw 1.4vw;
+    font-size: clamp(.6rem, 1vw, 1.2rem);
+}
+aside:first-of-type {
+    top: 11vw;
+    width: 58vw;
+    min-height: 6vw;
+}
+
+aside:last-of-type {
+    top: 19vw;
+    width: 38vw;
+    min-height: 24vw;
+    display: flex;
+    flex-direction: column;
+}
+
+aside:last-of-type h3  {
+    font-size: clamp(1rem, 2.2vw, 2.6rem);
+    margin-bottom: 1vw;
+}
+
+aside:last-of-type ul {
+    flex: 1;
+    align-content: space-evenly;
+}
+
+aside ul { gap: 0; }
+aside:last-of-type li { font-size: clamp(.7rem, 1.2vw, 1.5rem); }
+
+footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    padding: .6vw 1.2vw 1vw;
+}
+
+footer small {font-size: clamp(.6rem,1vw,1rem); }
+footer strong { font-size: clamp(1.4rem, 3.8vw, 4rem); }
+
+@media (prefers-reduced-motion: reduce) {
+    figure img { animation: none !important; }
+    html {scroll-behavior: auto; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
